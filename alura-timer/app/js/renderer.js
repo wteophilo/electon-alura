@@ -1,0 +1,1 @@
+console.log('Estou na janela do browser');
