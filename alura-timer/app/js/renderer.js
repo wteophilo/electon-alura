@@ -36,3 +36,13 @@ botaoPlay.addEventListener('click',function(){
     imgs.reverse();
     botaoPlay.src = imgs[0];
 });
+
+ipcRenderer.on('curso-trocado',(event,curso)=>{
+    data.carregaDados(curso)
+        .then((dados)=>{
+            labelTempo.textContent = dados.tempo;
+        }).catch((erro)=>{
+            console.log(erro);
+        });
+    labelCurso.textContent = curso;
+});

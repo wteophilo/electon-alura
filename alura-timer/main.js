@@ -1,6 +1,10 @@
-const {app,BrowserWindow,ipcMain} = require('electron');
+const {app,BrowserWindow,ipcMain,Tray,Menu} = require('electron');
 const data = require('./data')
+// importando o templateGenerator
+const templateGenerator = require('./template')
 
+
+let tray = null;
 app.on('ready', ()=>{
    console.log("Aplicação iniciada");
     let mainWindow = new BrowserWindow({
@@ -8,7 +12,17 @@ app.on('ready', ()=>{
         height: 400
     });
     
-    //mainWindow.loadURL('https://www.alura.com.br');
+    tray = new Tray(__dirname+'/app/img/icon-tray.png');
+
+    
+    // gerando template com o templateGenerator
+    let template = templateGenerator.geraTrayTemplate(mainWindow);
+
+    // criando o menu com o template gerado
+    let trayMenu = Menu.buildFromTemplate(template);    
+
+    
+    tray.setContextMenu(trayMenu);
     mainWindow.loadURL(`file://${__dirname}/app/index.html`);
 });
 
