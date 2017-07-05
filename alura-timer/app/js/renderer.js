@@ -7,6 +7,8 @@ let linkSobre = $('#link-sobre');
 let botaoPlay = $('.botao-play');
 let labelTempo = $('.tempo');
 let labelCurso = $('.curso');
+let campoAdicionar = $('.campo-adicionar');
+let botaoAdicionar = $('.botao-adicionar');
 
 window.onload = ()=>{
     data.carregaDados(labelCurso.textContent)
@@ -45,4 +47,12 @@ ipcRenderer.on('curso-trocado',(event,curso)=>{
             console.log(erro);
         });
     labelCurso.textContent = curso;
+});
+
+botaoAdicionar.addEventListener('click',function(){
+    let novoCurso = campoAdicionar.value;
+    labelCurso.textContent = novoCurso;
+    labelTempo.textContent = '00:00:00';
+    campoAdicionar.value = '';
+    ipcRenderer.send('curso-adicionado',novoCurso);
 });
