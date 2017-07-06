@@ -55,7 +55,8 @@ module.exports = {
                     label: 'Window',
                         submenu: [
                             {
-                                role: 'minimize'                       
+                                role: 'minimize',
+                                accelerator: 'CmdOrCtrl+M'
                             },
                             {
                                 role: 'close'
@@ -70,7 +71,8 @@ module.exports = {
                             click: ()=>{
                                 //propaga evento de um módulo principal para outro módulo principal
                                 ipcMain.emit('abrir-janela-sobre');
-                            }
+                            },
+                            accelerator: 'CmdOrCtrl+I'
                         }
                     ]
                 }
