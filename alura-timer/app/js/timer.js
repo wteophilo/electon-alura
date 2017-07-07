@@ -1,12 +1,13 @@
 const {ipcRenderer} = require('electron');
 const moment = require('moment');
 
-let segundos;
+let segundos = 0;
 let idTimer;
+let tempo;
 
 module.exports = {
     iniciar(elemento){
-        let tempo = moment.duration(elemento.textContent);
+        tempo = moment.duration(elemento.textContent);
         segundos= tempo.asSeconds();
         clearInterval(idTimer);
         idTimer = setInterval(()=>{
